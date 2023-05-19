@@ -1,0 +1,8 @@
+rootProject.name = 'jk-wx-sdk'
+include 'jk-wx-sdk-commons'
+include 'jk-wx-sdk-open'
+include 'jk-wx-sdk-mp'
+include 'jk-wx-sdk-miniapp'
+include 'jk-wx-sdk-qw'
+include 'jk-wx-sdk-webflux'
+

@@ -1,0 +1,48 @@
+plugins {
+    id 'java'
+}
+
+group 'com.jk.wx.sdk'
+version '0.2.1'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+// 上传source
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allJava
+    archiveClassifier = 'sources'
+}
+
+//上传至nexus
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId project.group
+            artifactId project.name
+            version project.version
+            from components.java
+            artifact  sourcesJar
+        }
+    }
+    repositories {
+        maven {
+            allowInsecureProtocol = true
+            url "http://nexus.jikeyiyong.com/repository/maven-releases/"
+            credentials {
+                username "maven-uploader"
+                password "jkmavenuploader"
+            }
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
