@@ -50,7 +50,7 @@ public class OpenTokenRequester {
     return requester.get(
         Map.of(
             "access_token", accessToken,
-            "openid", "openId"
+            "openid", openId
         ), null)
         .onErrorResume(e -> Mono.just(false))
         .switchIfEmpty(Mono.just(true));
